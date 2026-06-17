@@ -3,7 +3,7 @@
     <div v-if="!isLoggedIn" id="login-overlay" class="login-overlay">
       <div class="login-container">
         <div class="login-header">
-          <div class="login-icon">🔐</div>
+          <div class="login-icon"><span class="nf-icon"></span></div>
           <h2 class="login-title">{{ trans.adminLogin }}</h2>
           <p class="login-subtitle">{{ trans.enterCredentials }}</p>
         </div>
@@ -17,7 +17,7 @@
             <div class="password-input-wrapper">
               <input :type="passwordVisible.login ? 'text' : 'password'" name="password" autocomplete="current-password" v-model="loginForm.password" required class="login-input" placeholder="••••••••">
               <button type="button" class="password-toggle" @click="togglePassword('login')">
-                {{ passwordVisible.login ? '🙈' : '👁️' }}
+                {{ passwordVisible.login ? '' : '' }}
               </button>
             </div>
           </div>
@@ -25,7 +25,7 @@
             <div id="admin-turnstile-container"></div>
           </div>
           <div v-if="loginError" id="login-error" class="login-error">{{ loginError }}</div>
-          <button type="submit" class="login-btn">{{ loginLoading ? '⏳' : trans.login }}</button>
+          <button type="submit" class="login-btn">{{ loginLoading ? '' : trans.login }}</button>
         </form>
       </div>
       <Footer />
@@ -41,7 +41,7 @@
           </div>
           <div class="header-actions">
             <button @click="loadServers" class="btn">↻ {{ trans.refresh }}</button>
-            <button @click="logout" class="btn btn-red">🚪 {{ trans.logout }}</button>
+            <button @click="logout" class="btn btn-red"><span class="nf-icon"></span> {{ trans.logout }}</button>
           </div>
         </div>
 
@@ -87,7 +87,7 @@
         <div id="tab-servers" class="tab-content" :class="{ active: activeTab === 'servers' }">
           <div class="alert alert-info">
             <span class="alert-icon">[i]</span>
-            <span>{{ trans.clickToCopy }} <strong>📋</strong> {{ trans.installCommand }}。{{ trans.interval }}</span>
+            <span>{{ trans.clickToCopy }} <strong><span class="nf-icon"></span></strong> {{ trans.installCommand }}。{{ trans.interval }}</span>
           </div>
 
           <div class="toolbar">
@@ -97,21 +97,21 @@
               <datalist id="group-list">
                 <option v-for="group in groups" :key="group" :value="group"></option>
               </datalist>
-              <button v-if="newServerGroup" @click="newServerGroup = ''" class="toolbar-select-clear" title="Clear">✕</button>
+              <button v-if="newServerGroup" @click="newServerGroup = ''" class="toolbar-select-clear" title="Clear"></button>
             </div>
             <button @click="addServer" class="btn btn-primary">+ {{ trans.addServer }}</button>
           </div>
 
           <div class="batch-actions">
-            <button @click="batchDelete" class="btn btn-red">🗑 {{ trans.batchDelete }}</button>
-            <button @click="toggleSelectAll" class="btn">☐ {{ trans.toggleAll }}</button>
+            <button @click="batchDelete" class="btn btn-red"><span class="nf-icon"></span> {{ trans.batchDelete }}</button>
+            <button @click="toggleSelectAll" class="btn"><span class="nf-icon">☐</span> {{ trans.toggleAll }}</button>
           </div>
 
           <div class="table-wrapper">
             <table class="terminal-table">
               <thead>
                 <tr>
-                  <th class="table-center-cell col-width-35">↕️</th>
+                  <th class="table-center-cell col-width-35"><span class="nf-icon"></span></th>
                   <th class="col-width-30"><input type="checkbox" id="select-all" @change="handleSelectAll" class="checkbox-accent-green"></th>
                   <th>{{ trans.hostname.toUpperCase() }}</th>
                   <th>{{ trans.group.toUpperCase() }}</th>
@@ -125,7 +125,7 @@
               </thead>
               <tbody>
                 <tr v-if="servers.length === 0">
-                  <td colspan="10" class="empty-state"><span class="empty-icon">📦</span> {{ trans.noServers }}</td>
+                  <td colspan="10" class="empty-state"><span class="empty-icon"><span class="nf-icon"></span></span> {{ trans.noServers }}</td>
                 </tr>
                 <tr 
                   v-for="server in servers" 
@@ -140,7 +140,7 @@
                       <span v-if="server.country && server.country !== 'xx'">
                         <img :src="'https://flagcdn.com/24x18/' + server.country.toLowerCase() + '.png'" :alt="server.country" class="flag-img">
                       </span>
-                      <span v-else>🏳️</span>
+                      <span v-else><span class="nf-icon">󰈭</span></span>
                       <a :href="'/server/' + server.id" class="server-name-link">{{ server.name }}</a>
                     </div>
                   </td>
@@ -159,9 +159,9 @@
                         <input @click="copyCmd(server.id)" type="text" readonly :value="getInstallCommand(server.id)" class="cmd-input">
                       </div>
                       <div class="action-btns">
-                        <button @click="copyCmd(server.id)" class="btn btn-icon btn-green" :title="trans.copy">{{ copiedServerId === server.id ? '✅' : '📋' }}</button>
-                        <button @click="openEditModal(server)" class="btn btn-icon btn-blue" :title="trans.edit">✏️</button>
-                        <button @click="openDeleteModal(server.id)" class="btn btn-icon btn-red" :title="trans.delete">🗑️</button>
+                        <button @click="copyCmd(server.id)" class="btn btn-icon btn-green" :title="trans.copy">{{ copiedServerId === server.id ? '' : '' }}</button>
+                        <button @click="openEditModal(server)" class="btn btn-icon btn-blue" :title="trans.edit"></button>
+                        <button @click="openDeleteModal(server.id)" class="btn btn-icon btn-red" :title="trans.delete"></button>
                       </div>
                     </div>
                   </td>
@@ -186,7 +186,7 @@
                 <div class="flex" style="gap:8px;">
                   <input type="text" v-model="settings.custom_bg" class="form-input flex-1" placeholder="https://...">
                   <div class="upload-btn-wrapper">
-                    <button class="btn btn-margin-0">📁 {{ trans.upload }}</button>
+                    <button class="btn btn-margin-0"><span class="nf-icon"></span> {{ trans.upload }}</button>
                     <input type="file" accept="image/*" @change="uploadBg">
                   </div>
                 </div>
@@ -252,7 +252,7 @@
                   <div class="password-input-wrapper">
                     <input :type="passwordVisible.tgBotToken ? 'text' : 'password'" name="tg_bot_token" autocomplete="off" v-model="settings.tg_bot_token" class="form-input" placeholder="Bot Token or Webhook URL">
                     <button type="button" class="password-toggle" @click="togglePassword('tgBotToken')">
-                      {{ passwordVisible.tgBotToken ? '🙈' : '👁️' }}
+                      {{ passwordVisible.tgBotToken ? '' : '' }}
                     </button>
                   </div>
                 </div>
@@ -262,7 +262,7 @@
                   <div class="password-input-wrapper">
                     <input :type="passwordVisible.tgChatId ? 'text' : 'password'" name="tg_chat_id" autocomplete="off" v-model="settings.tg_chat_id" class="form-input" placeholder="Telegram Chat ID (optional for WeChat)">
                     <button type="button" class="password-toggle" @click="togglePassword('tgChatId')">
-                      {{ passwordVisible.tgChatId ? '🙈' : '👁️' }}
+                      {{ passwordVisible.tgChatId ? '' : '' }}
                     </button>
                   </div>
                 </div>
@@ -287,7 +287,7 @@
                 <div class="password-input-wrapper">
                   <input :type="passwordVisible.turnstileSecret ? 'text' : 'password'" name="turnstile_secret_key" autocomplete="off" v-model="settings.turnstile_secret_key" class="form-input" :placeholder="trans.turnstileSecretKeyPlaceholder">
                   <button type="button" class="password-toggle" @click="togglePassword('turnstileSecret')">
-                    {{ passwordVisible.turnstileSecret ? '🙈' : '👁️' }}
+                    {{ passwordVisible.turnstileSecret ? '' : '' }}
                   </button>
                 </div>
               </div>
@@ -315,7 +315,7 @@
                 <div class="password-input-wrapper">
                   <input :type="passwordVisible.password ? 'text' : 'password'" name="admin_password" autocomplete="new-password" v-model="settings.password" class="form-input" placeholder="••••••••">
                   <button type="button" class="password-toggle" @click="togglePassword('password')">
-                    {{ passwordVisible.password ? '🙈' : '👁️' }}
+                    {{ passwordVisible.password ? '' : '' }}
                   </button>
                 </div>
               </div>
@@ -325,7 +325,7 @@
                 <div class="password-input-wrapper">
                   <input :type="passwordVisible.confirmPassword ? 'text' : 'password'" name="admin_confirm_password" autocomplete="new-password" v-model="settings.confirm_password" class="form-input" placeholder="••••••••">
                   <button type="button" class="password-toggle" @click="togglePassword('confirmPassword')">
-                    {{ passwordVisible.confirmPassword ? '🙈' : '👁️' }}
+                    {{ passwordVisible.confirmPassword ? '' : '' }}
                   </button>
                 </div>
               </div>
@@ -344,7 +344,7 @@
                 <div class="password-input-wrapper">
                   <input :type="passwordVisible.jwtSecret ? 'text' : 'password'" name="jwt_secret" autocomplete="off" v-model="settings.jwt_secret" class="form-input" :placeholder="trans.jwtSecretPlaceholder">
                   <button type="button" class="password-toggle" @click="togglePassword('jwtSecret')">
-                    {{ passwordVisible.jwtSecret ? '🙈' : '👁️' }}
+                    {{ passwordVisible.jwtSecret ? '' : '' }}
                   </button>
                 </div>
               </div>
@@ -381,7 +381,7 @@
           </div>
 
           <div class="text-right mt-5">
-            <button @click="saveSettings" class="btn btn-primary btn-lg" :disabled="saving">{{ saving ? '⏳' : '💾' }} {{ saving ? trans.saving : trans.saveConfig }}</button>
+            <button @click="saveSettings" class="btn btn-primary btn-lg" :disabled="saving">{{ saving ? '' : '' }} {{ saving ? trans.saving : trans.saveConfig }}</button>
           </div>
         </div>
 
@@ -393,13 +393,13 @@
               <div class="form-group">
                 <label class="form-label">{{ trans.upgradeDatabase }}</label>
                 <p class="text-muted mb-2">{{ trans.upgradeDesc }}</p>
-                <button @click="openDbModal('upgrade')" class="btn btn-primary btn-lg" :disabled="dbLoading">⬆️ {{ trans.upgradeDatabase }}</button>
+                <button @click="openDbModal('upgrade')" class="btn btn-primary btn-lg" :disabled="dbLoading"><span class="nf-icon"></span> {{ trans.upgradeDatabase }}</button>
               </div>
 
               <div class="form-group">
-                <label class="form-label danger-label">⚠️ {{ trans.rebuildDatabase }}</label>
+                <label class="form-label danger-label"><span class="nf-icon"></span> {{ trans.rebuildDatabase }}</label>
                 <p class="text-muted mb-2">{{ trans.rebuildDesc }}</p>
-                <button @click="openDbModal('rebuild')" class="btn btn-red btn-lg" :disabled="dbLoading">🗑️ {{ trans.rebuildDatabase }}</button>
+                <button @click="openDbModal('rebuild')" class="btn btn-red btn-lg" :disabled="dbLoading"><span class="nf-icon"></span> {{ trans.rebuildDatabase }}</button>
               </div>
             </div>
           </div>
@@ -410,7 +410,7 @@
         <div class="modal-dialog">
           <div class="modal-header">
             <div class="modal-title">$ vim /etc/server.conf</div>
-            <button class="modal-close" @click="closeEditModal">✕</button>
+            <button class="modal-close" @click="closeEditModal"></button>
           </div>
           <input type="hidden" v-model="editForm.id">
 
@@ -508,13 +508,13 @@
         <div class="modal-dialog">
           <div class="modal-header">
             <div class="modal-title">$ rm -rf /etc/server.conf</div>
-            <button class="modal-close" @click="closeDeleteModal">✕</button>
+            <button class="modal-close" @click="closeDeleteModal"></button>
           </div>
           <input type="hidden" v-model="deleteServerId">
 
           <div class="mb-4">
             <div class="flex-center-gap-sm mb-3">
-              <span class="danger-icon text-xl">⚠️</span>
+              <span class="danger-icon text-xl"><span class="nf-icon"></span></span>
               <span class="danger-label">{{ trans.dangerWarning }}</span>
             </div>
             <p class="text-secondary text-sm line-height-1-6">
@@ -527,7 +527,7 @@
           <div class="cmd-input-wrapper mb-3" :class="{ copied: uninstallCopied }">
             <span class="cmd-prompt">$</span>
             <input type="text" readonly :value="getUninstallCommand()" class="cmd-input flex-1">
-            <button @click="copyUninstallCmd" class="btn btn-icon btn-green ml-2" :title="trans.copy">{{ uninstallCopied ? '✅' : '📋' }}</button>
+            <button @click="copyUninstallCmd" class="btn btn-icon btn-green ml-2" :title="trans.copy">{{ uninstallCopied ? '' : '' }}</button>
           </div>
 
           <p class="text-muted mb-4">
@@ -545,7 +545,7 @@
         <div class="modal-dialog">
           <div class="modal-header">
             <div class="modal-title">bash -s install</div>
-            <button class="modal-close" @click="closeCopyModal">✕</button>
+            <button class="modal-close" @click="closeCopyModal"></button>
           </div>
 
           <div class="form-group">
@@ -600,7 +600,7 @@
               <label class="form-label">{{ trans.trafficResetDay }}</label>
               <div class="flex items-center gap-2">
                 <input type="text" readonly :value="resetDay" class="form-input" style="width: 100px; background-color: var(--bg-secondary);">
-                <button @click="openEditModalFromCopy" class="btn btn-icon btn-blue" :title="trans.edit">✏️</button>
+                <button @click="openEditModalFromCopy" class="btn btn-icon btn-blue" :title="trans.edit"></button>
               </div>
             </div>
             <div class="form-group flex-1">
@@ -622,7 +622,7 @@
           </div>
 
           <div class="modal-footer flex-justify-end">
-            <button @click="copyCustomCmd" class="btn btn-primary">{{ copiedCmd ? '✅ ' + trans.copied : '📋 ' + trans.copy }}</button>
+            <button @click="copyCustomCmd" class="btn btn-primary">{{ copiedCmd ? ' ' + trans.copied : ' ' + trans.copy }}</button>
             <button @click="closeCopyModal" class="btn">{{ trans.close }}</button>
           </div>
         </div>
@@ -632,12 +632,12 @@
         <div class="modal-dialog">
           <div class="modal-header">
             <div class="modal-title">$ {{ dbOperation === 'rebuild' ? 'DROP DATABASE' : 'ALTER DATABASE' }}</div>
-            <button class="modal-close" @click="closeDbModal" :disabled="dbLoading">✕</button>
+            <button class="modal-close" @click="closeDbModal" :disabled="dbLoading"></button>
           </div>
 
           <div v-if="dbOperation === 'rebuild'" class="mb-4">
             <div class="flex-center-gap-sm mb-3">
-              <span class="danger-icon text-xl">⚠️</span>
+              <span class="danger-icon text-xl"><span class="nf-icon"></span></span>
               <span class="danger-label">{{ trans.dangerOperation }}</span>
             </div>
             <p class="text-secondary text-sm line-height-1-6">
@@ -647,7 +647,7 @@
 
           <div v-if="dbOperation === 'upgrade'" class="mb-4">
             <div class="flex-center-gap-sm mb-3">
-              <span class="warning-icon text-xl">ℹ️</span>
+              <span class="warning-icon text-xl"><span class="nf-icon"></span></span>
               <span style="color: var(--accent-yellow); font-weight: 600;">{{ trans.upgradeDatabase }}</span>
             </div>
             <p class="text-secondary text-sm line-height-1-6">
@@ -658,7 +658,7 @@
           <div v-if="dbResult" :class="dbResult.success ? 'warning-box' : 'danger-box'" class="mb-4">
             <div class="flex-center-gap-sm">
               <span :style="{ color: dbResult.success ? 'var(--accent-green)' : 'var(--accent-red)', fontWeight: '600' }">
-                {{ dbResult.success ? '✅' : '❌' }} {{ getMessage(dbResult.message) || (dbResult.success ? trans.operationSuccess : trans.operationFailed) }}
+                {{ dbResult.success ? '' : '󰅚' }} {{ getMessage(dbResult.message) || (dbResult.success ? trans.operationSuccess : trans.operationFailed) }}
               </span>
             </div>
             <div v-if="dbResult.error" class="text-red mt-2">

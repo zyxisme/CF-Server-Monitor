@@ -6,15 +6,15 @@
         <span v-if="countryCode !== 'xx'">
           <img :src="'https://flagcdn.com/24x18/' + countryCode + '.png'" :alt="countryCode" style="vertical-align: middle; margin-right: 5px; border-radius: 2px; filter: brightness(0.9);">
         </span>
-        <span v-else>🏳️</span>
+        <span v-else><span class="nf-icon">󰈭</span></span>
         <span class="server-name">{{ server.name }}</span>
       </div>
       <span class="status-label" :style="{ color: statusColor, borderColor: statusColor }">{{ statusText }}</span>
     </div>
     <div class="server-meta">
       <div class="card-meta">
-        <div v-if="sysConfig.show_price && server.price" class="card-meta-item">💰 {{ server.price }}</div>
-        <div v-if="sysConfig.show_expire && server.expire_date" class="card-meta-item">📅 <span :class="{ 'expired': isExpired }">{{ expireText }}</span></div>
+        <div v-if="sysConfig.show_price && server.price" class="card-meta-item"><span class="nf-icon"></span> {{ server.price }}</div>
+        <div v-if="sysConfig.show_expire && server.expire_date" class="card-meta-item"><span class="nf-icon"></span> <span :class="{ 'expired': isExpired }">{{ expireText }}</span></div>
       </div>
       <div class="card-badges">
         <span v-if="sysConfig.show_bw && server.bandwidth" class="badge badge-bw">{{ server.bandwidth }}</span>

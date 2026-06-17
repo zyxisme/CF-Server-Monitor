@@ -28,22 +28,22 @@
             :class="{ active: currentTheme === 'auto' }"
             @click="setTheme('auto')"
             title="Auto - Follow System"
-          >🌙☀</button>
+          ><span class="nf-icon"></span><span class="nf-icon">☀</span></button>
           <button 
             class="theme-btn" 
             :class="{ active: currentTheme === 'dark' }"
             @click="setTheme('dark')"
             title="Dark Mode"
-          >🌙</button>
+          ><span class="nf-icon"></span></button>
           <button 
             class="theme-btn" 
             :class="{ active: currentTheme === 'light' }"
             @click="setTheme('light')"
             title="Light Mode"
-          >☀</button>
+          ><span class="nf-icon">☀</span></button>
         </div>
       </div>
-      <a :href="isAdminPage ? '/' : '/admin'" class="admin-link-header">⚙ {{ isAdminPage ? t('dashboard') : t('admin') }}</a>
+      <a :href="isAdminPage ? '/' : '/admin'" class="admin-link-header"><span class="nf-icon"></span> {{ isAdminPage ? t('dashboard') : t('admin') }}</a>
     </div>
   </div>
 </template>

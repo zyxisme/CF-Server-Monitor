@@ -134,7 +134,7 @@
                 <span v-if="server.country && server.country !== 'xx'">
                   <img :src="'https://flagcdn.com/24x18/' + server.country.toLowerCase() + '.png'" :alt="server.country" class="flag-img">
                 </span>
-                <span v-else>🏳️</span>
+                <span v-else><span class="nf-icon">󰈭</span></span>
                 {{ (server.country || 'XX').toUpperCase() }}
               </td>
               <td><span class="os-label">{{ server.os || 'N/A' }} / {{ server.arch || 'N/A' }} </span></td>
