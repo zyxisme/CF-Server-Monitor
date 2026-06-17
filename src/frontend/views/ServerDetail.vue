@@ -225,7 +225,7 @@
       <div class="modal-dialog">
         <div class="modal-header">
           <div class="modal-title">$ sudo login</div>
-          <button class="modal-close" @click="showLoginModal = false">✕</button>
+          <button class="modal-close" @click="showLoginModal = false"><span class="ms-icon">close</span></button>
         </div>
         <div class="modal-body-content">
           <p class="modal-body-text">{{ trans.loginRequired }}</p>

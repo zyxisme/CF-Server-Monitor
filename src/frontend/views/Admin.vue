@@ -17,7 +17,7 @@
             <div class="password-input-wrapper">
               <input :type="passwordVisible.login ? 'text' : 'password'" name="password" autocomplete="current-password" v-model="loginForm.password" required class="login-input" placeholder="••••••••">
               <button type="button" class="password-toggle" @click="togglePassword('login')">
-                {{ passwordVisible.login ? '🙈' : '👁️' }}
+                <span class="ms-icon">{{ passwordVisible.login ? 'visibility_off' : 'visibility' }}</span>
               </button>
             </div>
           </div>
@@ -25,7 +25,7 @@
             <div id="admin-turnstile-container"></div>
           </div>
           <div v-if="loginError" id="login-error" class="login-error">{{ loginError }}</div>
-          <button type="submit" class="login-btn">{{ loginLoading ? '⏳' : trans.login }}</button>
+          <button type="submit" class="login-btn"><span class="ms-icon">{{ loginLoading ? 'hourglass_empty' : 'login' }}</span> {{ loginLoading ? '' : trans.login }}</button>
         </form>
       </div>
       <Footer />
@@ -97,7 +97,7 @@
               <datalist id="group-list">
                 <option v-for="group in groups" :key="group" :value="group"></option>
               </datalist>
-              <button v-if="newServerGroup" @click="newServerGroup = ''" class="toolbar-select-clear" title="Clear">✕</button>
+              <button v-if="newServerGroup" @click="newServerGroup = ''" class="toolbar-select-clear" title="Clear"><span class="ms-icon">close</span></button>
             </div>
             <button @click="addServer" class="btn btn-primary">+ {{ trans.addServer }}</button>
           </div>
@@ -159,9 +159,9 @@
                         <input @click="copyCmd(server.id)" type="text" readonly :value="getInstallCommand(server.id)" class="cmd-input">
                       </div>
                       <div class="action-btns">
-                        <button @click="copyCmd(server.id)" class="btn btn-icon btn-green" :title="trans.copy">{{ copiedServerId === server.id ? '✓' : '📋' }}</button>
-                        <button @click="openEditModal(server)" class="btn btn-icon btn-blue" :title="trans.edit">✏️</button>
-                        <button @click="openDeleteModal(server.id)" class="btn btn-icon btn-red" :title="trans.delete">🗑️</button>
+                        <button @click="copyCmd(server.id)" class="btn btn-icon btn-green" :title="trans.copy"><span class="ms-icon">{{ copiedServerId === server.id ? 'check' : 'content_copy' }}</span></button>
+                        <button @click="openEditModal(server)" class="btn btn-icon btn-blue" :title="trans.edit"><span class="ms-icon">edit</span></button>
+                        <button @click="openDeleteModal(server.id)" class="btn btn-icon btn-red" :title="trans.delete"><span class="ms-icon">delete</span></button>
                       </div>
                     </div>
                   </td>
@@ -252,7 +252,7 @@
                   <div class="password-input-wrapper">
                     <input :type="passwordVisible.tgBotToken ? 'text' : 'password'" name="tg_bot_token" autocomplete="off" v-model="settings.tg_bot_token" class="form-input" placeholder="Bot Token or Webhook URL">
                     <button type="button" class="password-toggle" @click="togglePassword('tgBotToken')">
-                      {{ passwordVisible.tgBotToken ? '🙈' : '👁️' }}
+                      <span class="ms-icon">{{ passwordVisible.tgBotToken ? 'visibility_off' : 'visibility' }}</span>
                     </button>
                   </div>
                 </div>
@@ -262,7 +262,7 @@
                   <div class="password-input-wrapper">
                     <input :type="passwordVisible.tgChatId ? 'text' : 'password'" name="tg_chat_id" autocomplete="off" v-model="settings.tg_chat_id" class="form-input" placeholder="Telegram Chat ID (optional for WeChat)">
                     <button type="button" class="password-toggle" @click="togglePassword('tgChatId')">
-                      {{ passwordVisible.tgChatId ? '🙈' : '👁️' }}
+                      <span class="ms-icon">{{ passwordVisible.tgChatId ? 'visibility_off' : 'visibility' }}</span>
                     </button>
                   </div>
                 </div>
@@ -287,7 +287,7 @@
                 <div class="password-input-wrapper">
                   <input :type="passwordVisible.turnstileSecret ? 'text' : 'password'" name="turnstile_secret_key" autocomplete="off" v-model="settings.turnstile_secret_key" class="form-input" :placeholder="trans.turnstileSecretKeyPlaceholder">
                   <button type="button" class="password-toggle" @click="togglePassword('turnstileSecret')">
-                    {{ passwordVisible.turnstileSecret ? '🙈' : '👁️' }}
+                    <span class="ms-icon">{{ passwordVisible.turnstileSecret ? 'visibility_off' : 'visibility' }}</span>
                   </button>
                 </div>
               </div>
@@ -315,7 +315,7 @@
                 <div class="password-input-wrapper">
                   <input :type="passwordVisible.password ? 'text' : 'password'" name="admin_password" autocomplete="new-password" v-model="settings.password" class="form-input" placeholder="••••••••">
                   <button type="button" class="password-toggle" @click="togglePassword('password')">
-                    {{ passwordVisible.password ? '🙈' : '👁️' }}
+                    <span class="ms-icon">{{ passwordVisible.password ? 'visibility_off' : 'visibility' }}</span>
                   </button>
                 </div>
               </div>
@@ -325,7 +325,7 @@
                 <div class="password-input-wrapper">
                   <input :type="passwordVisible.confirmPassword ? 'text' : 'password'" name="admin_confirm_password" autocomplete="new-password" v-model="settings.confirm_password" class="form-input" placeholder="••••••••">
                   <button type="button" class="password-toggle" @click="togglePassword('confirmPassword')">
-                    {{ passwordVisible.confirmPassword ? '🙈' : '👁️' }}
+                    <span class="ms-icon">{{ passwordVisible.confirmPassword ? 'visibility_off' : 'visibility' }}</span>
                   </button>
                 </div>
               </div>
@@ -344,7 +344,7 @@
                 <div class="password-input-wrapper">
                   <input :type="passwordVisible.jwtSecret ? 'text' : 'password'" name="jwt_secret" autocomplete="off" v-model="settings.jwt_secret" class="form-input" :placeholder="trans.jwtSecretPlaceholder">
                   <button type="button" class="password-toggle" @click="togglePassword('jwtSecret')">
-                    {{ passwordVisible.jwtSecret ? '🙈' : '👁️' }}
+                    <span class="ms-icon">{{ passwordVisible.jwtSecret ? 'visibility_off' : 'visibility' }}</span>
                   </button>
                 </div>
               </div>
@@ -381,7 +381,7 @@
           </div>
 
           <div class="text-right mt-5">
-            <button @click="saveSettings" class="btn btn-primary btn-lg" :disabled="saving">{{ saving ? '⏳' : '💾' }} {{ saving ? trans.saving : trans.saveConfig }}</button>
+            <button @click="saveSettings" class="btn btn-primary btn-lg" :disabled="saving"><span class="ms-icon">{{ saving ? 'hourglass_empty' : 'save' }}</span> {{ saving ? trans.saving : trans.saveConfig }}</button>
           </div>
         </div>
 
@@ -410,7 +410,7 @@
         <div class="modal-dialog">
           <div class="modal-header">
             <div class="modal-title">$ vim /etc/server.conf</div>
-            <button class="modal-close" @click="closeEditModal">✕</button>
+            <button class="modal-close" @click="closeEditModal"><span class="ms-icon">close</span></button>
           </div>
           <input type="hidden" v-model="editForm.id">
 
@@ -508,7 +508,7 @@
         <div class="modal-dialog">
           <div class="modal-header">
             <div class="modal-title">$ rm -rf /etc/server.conf</div>
-            <button class="modal-close" @click="closeDeleteModal">✕</button>
+            <button class="modal-close" @click="closeDeleteModal"><span class="ms-icon">close</span></button>
           </div>
           <input type="hidden" v-model="deleteServerId">
 
@@ -527,7 +527,7 @@
           <div class="cmd-input-wrapper mb-3" :class="{ copied: uninstallCopied }">
             <span class="cmd-prompt">$</span>
             <input type="text" readonly :value="getUninstallCommand()" class="cmd-input flex-1">
-            <button @click="copyUninstallCmd" class="btn btn-icon btn-green ml-2" :title="trans.copy">{{ uninstallCopied ? '✓' : '📋' }}</button>
+            <button @click="copyUninstallCmd" class="btn btn-icon btn-green ml-2" :title="trans.copy"><span class="ms-icon">{{ uninstallCopied ? 'check' : 'content_copy' }}</span></button>
           </div>
 
           <p class="text-muted mb-4">
@@ -545,7 +545,7 @@
         <div class="modal-dialog">
           <div class="modal-header">
             <div class="modal-title">bash -s install</div>
-            <button class="modal-close" @click="closeCopyModal">✕</button>
+            <button class="modal-close" @click="closeCopyModal"><span class="ms-icon">close</span></button>
           </div>
 
           <div class="form-group">
@@ -600,7 +600,7 @@
               <label class="form-label">{{ trans.trafficResetDay }}</label>
               <div class="flex items-center gap-2">
                 <input type="text" readonly :value="resetDay" class="form-input" style="width: 100px; background-color: var(--bg-secondary);">
-                <button @click="openEditModalFromCopy" class="btn btn-icon btn-blue" :title="trans.edit">✏️</button>
+                <button @click="openEditModalFromCopy" class="btn btn-icon btn-blue" :title="trans.edit"><span class="ms-icon">edit</span></button>
               </div>
             </div>
             <div class="form-group flex-1">
@@ -622,7 +622,7 @@
           </div>
 
           <div class="modal-footer flex-justify-end">
-            <button @click="copyCustomCmd" class="btn btn-primary">{{ copiedCmd ? '✓ ' + trans.copied : '📋 ' + trans.copy }}</button>
+            <button @click="copyCustomCmd" class="btn btn-primary"><span class="ms-icon">{{ copiedCmd ? 'check' : 'content_copy' }}</span> {{ copiedCmd ? trans.copied : trans.copy }}</button>
             <button @click="closeCopyModal" class="btn">{{ trans.close }}</button>
           </div>
         </div>
@@ -632,7 +632,7 @@
         <div class="modal-dialog">
           <div class="modal-header">
             <div class="modal-title">$ {{ dbOperation === 'rebuild' ? 'DROP DATABASE' : 'ALTER DATABASE' }}</div>
-            <button class="modal-close" @click="closeDbModal">✕ :disabled="dbLoading"></button>
+            <button class="modal-close" @click="closeDbModal"><span class="ms-icon">close</span> :disabled="dbLoading"></button>
           </div>
 
           <div v-if="dbOperation === 'rebuild'" class="mb-4">
@@ -658,7 +658,7 @@
           <div v-if="dbResult" :class="dbResult.success ? 'warning-box' : 'danger-box'" class="mb-4">
             <div class="flex-center-gap-sm">
               <span :style="{ color: dbResult.success ? 'var(--accent-green)' : 'var(--accent-red)', fontWeight: '600' }">
-                {{ dbResult.success ? '✓' : '✗' }} {{ getMessage(dbResult.message) || (dbResult.success ? trans.operationSuccess : trans.operationFailed) }}
+                <span class="ms-icon">{{ dbResult.success ? 'check' : 'close' }}</span> {{ getMessage(dbResult.message) || (dbResult.success ? trans.operationSuccess : trans.operationFailed) }}
               </span>
             </div>
             <div v-if="dbResult.error" class="text-red mt-2">
