@@ -4,7 +4,7 @@
       <div class="server-identity">
         <div class="status-indicator" :style="{ background: statusColor, boxShadow: '0 0 8px ' + statusColor }"></div>
         <span v-if="countryCode !== 'xx'">
-          <img :src="'https://flagcdn.com/24x18/' + countryCode + '.png'" :alt="countryCode" style="vertical-align: middle; margin-right: 5px; border-radius: 2px; filter: brightness(0.9);">
+          <img :src="getTwemojiFlagUrl(countryCode)" :alt="countryCode" style="vertical-align: middle; margin-right: 5px; border-radius: 2px; filter: brightness(0.9); width: 20px; height: 20px;">
         </span>
         <span v-else><span class="nf-icon">󰈭</span></span>
         <span class="server-name">{{ server.name }}</span>
@@ -90,6 +90,7 @@ import { formatBytes } from '../utils/api'
 import { t, currentLang } from '../utils/i18n'
 import { translations } from '../utils/i18n'
 import { TIME, PING } from '../utils/constants'
+import { getTwemojiFlagUrl } from '../utils/twemoji'
 
 const props = defineProps({
   server: {

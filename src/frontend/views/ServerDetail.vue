@@ -25,7 +25,7 @@
         <div class="host-name">
           <span class="prompt">root@</span>
           <span v-if="server.country && server.country !== 'xx'">
-            <img :src="'https://flagcdn.com/24x18/' + server.country.toLowerCase() + '.png'" :alt="server.country" class="flag-img" style="margin-right:6px;">
+            <img :src="getTwemojiFlagUrl(server.country.toLowerCase())" :alt="server.country" class="flag-img" style="margin-right:6px; width: 20px; height: 20px;">
           </span>
           <span v-else><span class="nf-icon">󰈭</span></span>
           <span>{{ server.name || 'Loading...' }}</span>
@@ -250,6 +250,7 @@ import 'chartjs-adapter-date-fns'
 import { currentLang, translations } from '../utils/i18n'
 import { TIME, CHART, GAP_BREAK } from '../utils/constants'
 import useTheme from '../composables/useTheme'
+import { getTwemojiFlagUrl } from '../utils/twemoji'
 
 const route = useRoute()
 

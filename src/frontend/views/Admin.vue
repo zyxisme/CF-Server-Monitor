@@ -138,7 +138,7 @@
                   <td>
                     <div class="server-info">
                       <span v-if="server.country && server.country !== 'xx'">
-                        <img :src="'https://flagcdn.com/24x18/' + server.country.toLowerCase() + '.png'" :alt="server.country" class="flag-img">
+                        <img :src="getTwemojiFlagUrl(server.country.toLowerCase())" :alt="server.country" class="flag-img" style="width: 20px; height: 20px;">
                       </span>
                       <span v-else><span class="nf-icon">󰈭</span></span>
                       <a :href="'/server/' + server.id" class="server-name-link">{{ server.name }}</a>
@@ -692,6 +692,7 @@ import Footer from '../components/Footer.vue'
 import { adminApi, login, logout as apiLogout, formatBytes, upgradeDatabase, rebuildDatabase } from '../utils/api'
 import { t, currentLang } from '../utils/i18n'
 import { translations } from '../utils/i18n'
+import { getTwemojiFlagUrl } from '../utils/twemoji'
 
 const API_BASE = window.location.origin
 

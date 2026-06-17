@@ -35,7 +35,7 @@
           @click="setFilter(code)"
         >
           <span v-if="code !== 'all'">
-            <img v-if="code !== 'all'" :src="'https://flagcdn.com/16x12/' + (code || 'xx').toLowerCase() + '.png'" :alt="code">
+            <img v-if="code !== 'all'" :src="getTwemojiFlagUrl((code || 'xx').toLowerCase())" :alt="code" style="width: 16px; height: 16px;">
           </span>
           {{ code === 'all' ? '[' + trans.all + ']' : code.toUpperCase() }} {{ count }}
         </span>
@@ -132,7 +132,7 @@
               <td><b>{{ server.name }}</b></td>
               <td>
                 <span v-if="server.country && server.country !== 'xx'">
-                  <img :src="'https://flagcdn.com/24x18/' + server.country.toLowerCase() + '.png'" :alt="server.country" class="flag-img">
+                  <img :src="getTwemojiFlagUrl(server.country.toLowerCase())" :alt="server.country" class="flag-img" style="width: 20px; height: 20px;">
                 </span>
                 <span v-else><span class="nf-icon">󰈭</span></span>
                 {{ (server.country || 'XX').toUpperCase() }}
@@ -201,6 +201,7 @@ import { fetchServers, formatBytes, createLiveSocket } from '../utils/api.js'
 import { t, currentLang } from '../utils/i18n.js'
 import { translations } from '../utils/i18n.js'
 import { TIME } from '../utils/constants'
+import { getTwemojiFlagUrl } from '../utils/twemoji'
 
 const servers = ref([])
 const stats = ref({ total: '-', online: 0, offline: 0, globalNetRx: 0, globalNetTx: 0, globalSpeedIn: 0, globalSpeedOut: 0 })
