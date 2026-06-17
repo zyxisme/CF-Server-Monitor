@@ -27,7 +27,7 @@
           <span v-if="server.country && server.country !== 'xx'">
             <img :src="getTwemojiFlagUrl(server.country.toLowerCase())" :alt="server.country" class="flag-img" style="margin-right:6px; width: 20px; height: 20px;">
           </span>
-          <span v-else><span class="nf-icon">󰈭</span></span>
+          <span v-else><span class="ms-icon">flag</span></span>
           <span>{{ server.name || 'Loading...' }}</span>
           <span style="color: var(--text-muted);">:~#</span>
         </div>
@@ -38,43 +38,43 @@
       </div>
       <div class="sysinfo-grid" id="info-panel">
         <div class="sysinfo-item">
-          <span class="sysinfo-label"><span class="nf-icon">󰥔</span> {{ trans.uptime }}</span>
+          <span class="sysinfo-label"><span class="ms-icon">schedule</span> {{ trans.uptime }}</span>
           <span class="sysinfo-value">{{ formatUptime(server.boot_time) }}</span>
         </div>
         <div class="sysinfo-item" v-if="server.expire_date">
-          <span class="sysinfo-label"><span class="nf-icon">󰃭</span> {{ trans.expire }}</span>
+          <span class="sysinfo-label"><span class="ms-icon">calendar_month</span> {{ trans.expire }}</span>
           <span class="sysinfo-value" :class="{ 'expired': isExpired }">{{ expireDaysText }}</span>
         </div>
         <div class="sysinfo-item">
-          <span class="sysinfo-label"><span class="nf-icon">󰌝</span> {{ trans.os }} / {{ trans.architecture }}</span>
+          <span class="sysinfo-label"><span class="ms-icon">laptop</span> {{ trans.os }} / {{ trans.architecture }}</span>
           <span class="sysinfo-value sysinfo-small">{{ server.os || 'N/A' }} / {{ server.arch || 'N/A' }}</span>
         </div>
         <div class="sysinfo-item">
-          <span class="sysinfo-label"><span class="nf-icon">󰮥</span> {{ trans.cpuInfo }}</span>
+          <span class="sysinfo-label"><span class="ms-icon">handyman</span> {{ trans.cpuInfo }}</span>
           <span class="sysinfo-value sysinfo-small">{{ server.cpu_info || 'N/A' }} x {{ server.cpu_cores || 'N/A' }}</span>
         </div>
         <div class="sysinfo-item">
-          <span class="sysinfo-label"><span class="nf-icon">󰋜</span> {{ trans.totalDiskRam }}</span>
+          <span class="sysinfo-label"><span class="ms-icon">storage</span> {{ trans.totalDiskRam }}</span>
           <span class="sysinfo-value">{{ formatBytes(server.disk_total*1024*1024) }} / {{ formatBytes(server.ram_total*1024*1024) }}</span>
         </div>
         <div class="sysinfo-item">
-          <span class="sysinfo-label"><span class="nf-icon">󰄪</span> {{ trans.loadAvg }}</span>
+          <span class="sysinfo-label"><span class="ms-icon">bar_chart</span> {{ trans.loadAvg }}</span>
           <span class="sysinfo-value highlight">{{ server.load_avg || '0.00 0.00 0.00' }}</span>
         </div>
         <div class="sysinfo-item">
-          <span class="sysinfo-label"><span class="nf-icon">󰖝</span> {{ trans.totalTraffic }}</span>
+          <span class="sysinfo-label"><span class="ms-icon">public</span> {{ trans.totalTraffic }}</span>
           <span class="sysinfo-value sysinfo-small">↓ {{ formatBytes(server.net_rx) }} / ↑ {{ formatBytes(server.net_tx) }}</span>
         </div>
         <div class="sysinfo-item">
-          <span class="sysinfo-label"><span class="nf-icon">󰌸</span> {{ trans.realtimeSpeed }}</span>
+          <span class="sysinfo-label"><span class="ms-icon">bolt</span> {{ trans.realtimeSpeed }}</span>
           <span class="sysinfo-value sysinfo-small">↓ {{ formatBytes(server.net_in_speed) }}/s / ↑ {{ formatBytes(server.net_out_speed) }}/s</span>
         </div>
         <div class="sysinfo-item" v-if="server.net_rx_monthly">
-          <span class="sysinfo-label"><span class="nf-icon">󰄪</span> {{ trans.monthlyTraffic }}</span>
+          <span class="sysinfo-label"><span class="ms-icon">bar_chart</span> {{ trans.monthlyTraffic }}</span>
           <span class="sysinfo-value sysinfo-small">↓ {{ formatBytes(server.net_rx_monthly) }} / ↑ {{ formatBytes(server.net_tx_monthly) }}</span>
         </div>
         <div class="sysinfo-item" v-if="server.net_rx_monthly">
-          <span class="sysinfo-label"><span class="nf-icon">󰒉</span> {{ trans.monthlyTrafficLimit }}</span>
+          <span class="sysinfo-label"><span class="ms-icon">inventory_2</span> {{ trans.monthlyTrafficLimit }}</span>
           <span class="sysinfo-value sysinfo-small">
             {{ server.traffic_calc_type === 'dl' ? formatBytes(server.net_rx_monthly) : (server.traffic_calc_type === 'ul' ? formatBytes(server.net_tx_monthly) : formatBytes(server.net_rx_monthly + server.net_tx_monthly)) }} 
             / 
@@ -82,11 +82,11 @@
           </span>
         </div>
         <div class="sysinfo-item">
-          <span class="sysinfo-label"><span class="nf-icon">󰥔</span> {{ trans.bootTime }}</span>
+          <span class="sysinfo-label"><span class="ms-icon">schedule</span> {{ trans.bootTime }}</span>
           <span class="sysinfo-value sysinfo-small">{{ formatTimestamp(server.boot_time) }}</span>
         </div>
         <div class="sysinfo-item">
-          <span class="sysinfo-label"><span class="nf-icon">󰔚</span> {{ trans.lastUpdate }}</span>
+          <span class="sysinfo-label"><span class="ms-icon">timer</span> {{ trans.lastUpdate }}</span>
           <span class="sysinfo-value sysinfo-small">{{ lastUpdateText }}</span>
         </div>
       </div>
