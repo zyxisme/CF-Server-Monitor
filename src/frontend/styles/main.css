@@ -8,15 +8,9 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 /* --------------------------------------------------------------------------
-   1b. Nerd Font Face
+   1b. Material Symbols
    -------------------------------------------------------------------------- */
-@font-face {
-    font-family: 'JetBrainsMono Nerd Font';
-    src: url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@v3.3.0/build/fonts/JetBrainsMono/JetBrainsMonoNerdFont-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0&display=swap');
 
 /* --------------------------------------------------------------------------
    2. CSS Variables (Design Tokens)
@@ -56,7 +50,7 @@
     --color-active: #fff;
 
     /* Typography */
-    --terminal-font: 'JetBrainsMono Nerd Font', 'JetBrains Mono', 'Courier New', monospace;
+    --terminal-font: 'JetBrains Mono', 'Courier New', monospace;
 }
 
 /* --------------------------------------------------------------------------
@@ -2223,11 +2217,20 @@ body::before {
     filter: brightness(0.9);
 }
 
-.nf-icon {
-    font-family: 'JetBrainsMono Nerd Font', monospace;
+.ms-icon {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
     font-style: normal;
     font-size: 1.1em;
-    vertical-align: -0.05em;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    vertical-align: -0.12em;
 }
 
 .admin-link-color {

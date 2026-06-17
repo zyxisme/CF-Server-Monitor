@@ -134,7 +134,7 @@
                 <span v-if="server.country && server.country !== 'xx'">
                   <img :src="getTwemojiFlagUrl(server.country.toLowerCase())" :alt="server.country" class="flag-img" style="width: 20px; height: 20px;">
                 </span>
-                <span v-else><span class="nf-icon">󰈭</span></span>
+                <span v-else><span class="ms-icon">flag</span></span>
                 {{ (server.country || 'XX').toUpperCase() }}
               </td>
               <td><span class="os-label">{{ server.os || 'N/A' }} / {{ server.arch || 'N/A' }} </span></td>
